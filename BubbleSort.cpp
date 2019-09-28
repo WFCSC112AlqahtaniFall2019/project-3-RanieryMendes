@@ -2,6 +2,7 @@
 #include <vector>
 #include <ctime>
 #include <cassert>
+#include <cstdlib>
 using namespace std;
 
 // MergeSort function declarations
@@ -12,10 +13,19 @@ void mergeSortedLists(vector<int>& a, vector<int>& tmp, int leftPos, int rightPo
 void swap (int *a, int *b);
 void bubbleSort(int *a, int n);
 
-int main(int argc, char** argv) {
+int main(int argc, char* argv[]) {
+
+
+    if (argc != 3) {
+        cout << "Usage: BubbleSort.exe seed length" << endl;
+        return 1; // 1 indicates error
+    }
+
     // get input: first is random seed, second is vector length
     int seed, length;
-    cin >> seed >> length;
+     seed = atoi(argv[1]);
+     length =atoi(argv[2]);
+   // cin >> seed >> length;
     srand(seed);
 
     vector<int> v(length); // vector to be sorted
@@ -99,8 +109,8 @@ int main(int argc, char** argv) {
     double elapsed_bubbleSort = double(end_bubbleSort - start_bubbleSort) / CLOCKS_PER_SEC;
 
     cout << elapsed_mergeSort << "       " << elapsed_bubbleSort << endl;
-
     delete ptr;
+
 
     return 0;
 }
